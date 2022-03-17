@@ -1,7 +1,3 @@
-// Para esse projeto, os requisitos fundamentais serão:
-// 7 - Determinar quem foi o grande campeão de acordo com a quantidade de vitórias de cada um (computador e jogador);
-// 8 - Perguntar se o Jogador quer jogar novamente: Se sim volte ao primeiro passo, se não finalize o programa.
-
 console.clear();
 const prompt = require("prompt-sync")();
 
