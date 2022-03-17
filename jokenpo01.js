@@ -13,11 +13,11 @@ let vitoriaUsuario = 0;
 let empate = 0;
 let resposta;
 
-while (resposta = "sim") {
-    rodadas = +prompt("Digite quantas rodadas serao jogadas: ")
+while (resposta != "nao") {
+    rodadas = +prompt("Digite quantas rodadas serao jogadas: ");
     for (let i = 0; i < rodadas;) {
-        computador = jogo[ /*Math.floor(Math.random() * 3)*/ 2];
-        chute = prompt("Digite seu chute entre pedra, papel, tesoura: ").toLowerCase()
+        computador = jogo[Math.floor(Math.random() * 3)];
+        chute = prompt("Digite seu chute entre pedra, papel, tesoura: ").toLowerCase();
         if (chute == "pedra") {
             jogo[0];
             if (computador == "pedra") {
@@ -52,8 +52,10 @@ while (resposta = "sim") {
             console.log("Chute invalido ");
         }
     }
-    resposta = prompt("Deseja jogar novamente? ").toLowerCase();
-    if (resposta = "nao") {
+
+    let resposta = prompt("Deseja jogar novamente? ").toLowerCase();
+
+    if (resposta != "sim") {
         if (vitoriaUsuario > vitoriaComputador) {
             console.log(`O usuario ${usuario} teve ${vitoriaUsuario} vitorias`);
             break;
