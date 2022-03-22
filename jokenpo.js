@@ -1,81 +1,70 @@
+// 8 - Perguntar se o Jogador quer jogar novamente: Se sim volte ao primeiro passo, se não finalize o programa.
+
 console.clear();
 const prompt = require("prompt-sync")();
 
-let rodadas = +prompt("Digite suas rodadas: ");
-const elementos = ["pedra", "papel", "tesoura"];
-console.log("Digite sua escolha no jokenpo");
-console.log("sendo para responder voce digita (pedra) (papel) (tesoura)");
+let usuario = prompt("Digite os seu nome: ")
+let rodadas;
+let jogo = ["pedra", "papel", "tesoura"];
 let chute;
 let computador;
-let contador = 0;
-let vitorias = 0;
-let derrotas = 0;
+let vitoriaComputador = 0;
+let vitoriaUsuario = 0;
 let empate = 0;
-let vitoriasComputador = 0;
-let derrotasComputador = 0;
+let resposta;
 
-
-while (contador < rodadas) {
-    chute = prompt("Digite sua resposta no jogo, voce escolhe pedra, papel ou tesoura? ").toLowerCase()
-    computador = Math.floor(Math.random() * 4);
-    if (computador == 1 /*pedra*/ ) {
-        elementos[0];
+while (resposta != "nao") {
+    rodadas = +prompt("Digite quantas rodadas serao jogadas: ");
+    for (let i = 0; i < rodadas;) {
+        computador = jogo[Math.floor(Math.random() * 3)];
+        chute = prompt("Digite seu chute entre pedra, papel, tesoura: ").toLowerCase();
         if (chute == "pedra") {
-            empate++;
-            contador++;
+            jogo[0];
+            if (computador == "pedra") {
+                empate++;
+            } else if (computador == "papel") {
+                vitoriaComputador++;
+            } else if (computador == "tesoura") {
+                vitoriaUsuario++;
+            }
+            i++;
         } else if (chute == "papel") {
-            derrotasComputador++;
-            vitorias++;
-            contador++;
+            jogo[1];
+            if (computador == "pedra") {
+                vitoriaUsuario++;
+            } else if (computador == "papel") {
+                empate++;
+            } else if (computador == "tesoura") {
+                vitoriaComputador++;
+            }
+            i++;
         } else if (chute == "tesoura") {
-            vitoriasComputador++;
-            derrotas++;
-            contador++;
+            jogo[2];
+            if (computador == "pedra") {
+                vitoriaComputador++;
+            } else if (computador == "papel") {
+                vitoriaUsuario++;
+            } else if (computador == "tesoura") {
+                empate++;
+            }
+            i++;
         } else {
-            console.error("Resposta errada");
-        }
-    } else if (computador == 2 /* papel */ ) {
-        elementos[1];
-        if (chute == "pedra") {
-            vitoriasComputador++;
-            derrotas++;
-            contador++;
-        } else if (chute == "papel") {
-            empate++;
-            contador++;
-        } else if (chute == "tesoura") {
-            derrotasComputador++;
-            vitorias++;
-            contador++;
-        } else {
-            console.error("Resposta errada");
-        }
-    } else if (computador == 3 /* tesoura */ ) {
-        elementos[2];
-        if (chute == "pedra") {
-            derrotasComputador++;
-            vitorias++;
-            contador++;
-        } else if (chute == "papel") {
-            vitoriasComputador++;
-            derrotas++;
-            contador++;
-        } else if (chute == "tesoura") {
-            empate++;
-            contador++;
-        } else {
-            console.error("Resposta errada");
+            console.log("Chute invalido ");
         }
     }
-}
-console.log();
-console.log(`De ${rodadas} rodadas voce teve ${vitorias} vitorias ${derrotas} derrotas e ${empate} empates`);
-console.log(`De ${rodadas} rodadas o computador teve ${vitoriasComputador} vitorias ${derrotasComputador} derrotas e ${empate} empates`);
-console.log();
-if (vitorias > vitoriasComputador) {
-    console.log(`Voce foi o grande compeao com ${vitorias} vitorias`)
-} else if (vitorias == vitoriasComputador) {
-    console.log(`Nao ouve um campeao teve ${empate} empates`)
-} else if (vitorias < vitoriasComputador) {
-    console.log(`O computador foi o grande compeao com ${vitorias} vitorias`)
+
+    let resposta = prompt("Deseja jogar novamente? ").toLowerCase();
+
+    if (resposta != "sim") {
+        if (vitoriaUsuario > vitoriaComputador) {
+            console.log(`O usuario ${usuario} teve ${vitoriaUsuario} vitorias`);
+            break;
+        } else if (vitoriaComputador > vitoriaUsuario) {
+            console.log(`O computador teve ${vitoriaComputador} vitorias`);
+            break;
+        } else if (empate > (vitoriaUsuario || vitoriaComputador)) {
+            console.log(`Nao teve vitoria teve ${empate} empates`);
+            break;
+        }
+    }
 }
